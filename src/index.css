@@ -2,12 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
-form p{
-    @apply text-white
+input {
+  @apply border-2 px-3 py-2 focus:outline-none;
 }
-input{
-    @apply border-2 px-3 py-2 focus:outline-none  ;
+
+.heroLogin {
+  animation-duration: 4s;
+  animation-name: scaling;
+  animation-iteration-count: infinite;
+}
+ul li {
+  @apply py-2 hover:bg-gray-300 sm:py-0;
+}
+
+.NavBar ul {
+  transition: all ease-in-out 0.1s;
+  @apply h-0 sm:h-auto;
+}
+.totalItems {
+  @apply absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-sm text-white;
+}
+
+.nav-items {
+  height: max-content !important;
+}
+
+main .heroSection {
+  background-size: 140% !important;
+  background-position-x: -40% !important;
+  background-position-y: 20% !important;
+}
+.col1 p {
+  @apply text-gray-500;
+}
+.col1 h1 {
+  @apply text-4xl;
+}
+@keyframes scaling {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.1;
+  }
+  100% {
+    scale: 1;
+  }
 }

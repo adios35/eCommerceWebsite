@@ -2,13 +2,31 @@ import { GiRunningShoe } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiLogIn } from "react-icons/bi";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useCart } from "./cart/cartContext";
 
 const NavBar = () => {
+  const items = useCart();
   const showRef = useRef();
-  function show() {
-    showRef.current.classList.toggle("nav-items");
-  }
+  const navRef = useRef();
+  // function show() {
+  //   showRef.current.classList.toggle("nav-items");
+  // }
+  useEffect(() => {
+    document.addEventListener("click", (e) => {
+      if (
+        e.target.classList.contains("hamburger") ||
+        e.target.classList.contains("line")
+      ) {
+        showRef?.current.classList.toggle("nav-items");
+      } else {
+        showRef?.current.classList.remove("nav-items");
+      }
+      // if (e.currentTarget.classList) {
+      //   console.log(true);
+      // }
+    });
+  }, []);
 
   return (
     <div className="NavBar fixed top-0 z-10 flex h-[60px] w-full items-center gap-5 bg-white pr-5 shadow-md">
@@ -32,10 +50,12 @@ const NavBar = () => {
           <a href="#">Discount</a>
         </li>
       </ul>
-      <div className="shop ml-auto flex items-center gap-3 text-2xl sm:ml-auto ">
+      <div className="shop ml-auto flex items-center gap-3 text-2xl text-gray-600 sm:ml-auto">
         <div className="cart relative">
-          <span className="totalItems">1</span>
-          <Link to="/">
+          {items.length > 0 && (
+            <span className="totalItems">{items.length}</span>
+          )}
+          <Link to="cart">
             <AiOutlineShoppingCart className="rounded-full p-[1px] hover:bg-gray-200" />
           </Link>
         </div>
@@ -46,12 +66,13 @@ const NavBar = () => {
         </div>
       </div>
       <div
-        onClick={() => show()}
-        className="flex cursor-pointer flex-col space-y-[6px] rounded-md p-2 hover:bg-gray-300 sm:hidden"
+        ref={navRef}
+        // onClick={() => show()}
+        className="hamburger flex cursor-pointer flex-col space-y-[6px] rounded-md p-2 hover:bg-gray-300 sm:hidden"
       >
-        <span className="h-[3px] w-[30px] bg-gray-700"></span>
-        <span className="h-[3px] w-[30px] bg-gray-700"></span>
-        <span className="h-[3px] w-[30px] bg-gray-700"></span>
+        <span className="line h-[3px] w-[30px] bg-gray-700"></span>
+        <span className="line h-[3px] w-[30px] bg-gray-700"></span>
+        <span className="line h-[3px] w-[30px] bg-gray-700"></span>
       </div>
     </div>
   );

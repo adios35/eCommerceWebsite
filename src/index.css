@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-input {
+.col2 input {
   @apply border-2 px-3 py-2 focus:outline-none;
 }
 
@@ -11,20 +11,20 @@ input {
   animation-name: scaling;
   animation-iteration-count: infinite;
 }
-ul li {
+.NavBar li {
   @apply py-2 hover:bg-gray-300 sm:py-0;
 }
 
 .NavBar ul {
+  top: -200px;
   transition: all ease-in-out 0.1s;
-  @apply h-0 sm:h-auto;
+}
+.nav-items {
+  top: 60px !important;
+  height: max-content !important;
 }
 .totalItems {
   @apply absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-sm text-white;
-}
-
-.nav-items {
-  height: max-content !important;
 }
 
 main .heroSection {
@@ -38,6 +38,27 @@ main .heroSection {
 .col1 h1 {
   @apply text-4xl;
 }
+
+.payment input,
+select {
+  @apply my-2 w-full;
+}
+
+.checkout form h2 {
+  @apply my-5 text-2xl;
+}
+footer ul li {
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+.card {
+  transition: all ease-in-out 0.3s;
+}
+
+footer h2 {
+  @apply mb-2 text-xl text-gray-200;
+}
+
 @keyframes scaling {
   0% {
     scale: 1;
